@@ -16,6 +16,8 @@ configure :production do
   DataMapper.setup(:default, ENV[' DATABASE_URL'])
 end
 
+# Jon
+
 configure do
   enable :sessions
   set :username, 'frank'
@@ -43,7 +45,7 @@ helpers do
   end
 
   def set_title
-    @title ||= "Songs By Sinatra"
+    @title ||= "Songs By Jon"
   end
 
   def send_message
