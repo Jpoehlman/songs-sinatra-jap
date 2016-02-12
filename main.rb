@@ -16,7 +16,6 @@ configure :production do
   DataMapper.setup(:default, ENV[' DATABASE_URL'])
 end
 
-# Jon
 
 configure do
   enable :sessions
@@ -28,6 +27,23 @@ configure :development do
   set :bind, '0.0.0.0'
   set :port, 3000
 end
+
+configure :development do
+  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db")
+  set :email_address => 'smtp.gmail.com',
+    :email_user_name => 'poehlman356',
+    :email_password => 'chona-356',
+    :email_domain => 'localhost.localdomain'
+end
+
+configure :production do
+  DataMapper.setup(:default, ENV['DATABASE_URL'])
+  set :email_address => 'smtp.sendgrid.net',
+    :email_user_name => ENV['SENDGRID_USERNAME'],
+    :email_password => ENV['SENDGRID_PASSWORD'],
+    :email_domain => 'heroku.com'
+end
+
 
 before do
   set_title
